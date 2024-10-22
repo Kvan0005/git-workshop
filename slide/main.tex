@@ -1,0 +1,262 @@
+\documentclass[usenames,dvipsnames]{beamer}
+\usetheme{ULB}
+
+
+\newcounter{FootlineChoice}
+\newcounter{DepartmentLogo}
+\newcounter{FacultyLogo}
+
+\def\DepartmentLogo{theme/logos/urlab.pdf}
+% In the folder "theme/logos/" please import the Department logo image. This will appear at north east corner of every frame
+
+\setcounter{DepartmentLogo}{2}
+% Please select 0 if you want a blank NE corner for each frame
+% Please select 1 if you want the Department Logo only on the Title Page (NE corner)
+% Please select 2 if you want the Department Logo on each frame (still NE corner)
+
+
+\def\FacultyLogo{theme/logos/ulb_sciences.png}
+% In the folder "theme/logos/" please import the Faculty logo image. This will appear at south east corner of title frame
+
+\setcounter{FacultyLogo}{1}
+% Please select 1 if you want the Faculty Logo to be displayed in the sE corner of the title frame
+% Please select 0 if you want a blank SE corner for the title frame
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOOTLINE MANAGEMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{FootlineChoice}{3}
+% Please select value 0,1, or 2 for the footline alignment.
+% All footlines display the [author] in SW corner and [institute] in SE corner,
+% but you can choose between the following options for the center of the footline :
+
+% Footline Aligment 0 : 
+%       Only the current section is displayed. All is aligned with the very bottom of the frame.
+
+% Footline Aligment 1 :
+%       Only the current section is displayed. All is aligned a bit higher to escape potential crops when projecting.
+
+% Footline Aligment 2 : 
+%       Current section and subsection are displayed.  All is aligned a bit higher to escape potential crops when projecting.
+
+% Footline Alignment 3 :
+%       Nothing displayed at center. [author] and [institute] aligned with very bottom of frame.
+
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multimedia}
+\usepackage{soul}
+\usepackage{svg}
+\usepackage{listings}
+\usepackage{inconsolata}
+
+\newcommand{\backupbegin}{
+	\newcounter{finalframe}
+	\setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+	\setcounter{framenumber}{\value{finalframe}}
+}
+
+
+\title{Git 101:\\ Tout ce qu'il faut connaitre pour etre un bon dev.}
+\subtitle{Atelier Git(hub)}
+\date{\today}
+\author{Kevin \textsc{Vandervaeren}}
+\institute{ULB -- URLAB}
+
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+	\titlepage
+\end{frame}
+
+\begin{frame}{Parlons de Rust}
+	\begin{columns}
+		\begin{column}{0.65\linewidth}
+			\begin{itemize}
+				\item Débuté à Mozzilla entre 2006 et 2009
+				\item Compilé
+				\item Typage fort et statique
+				\item Axé sur 
+				\begin{itemize}
+					\item la sécurité
+					\item la rapidité	
+				\end{itemize}
+			\end{itemize}
+		\end{column} %%
+		\begin{column}{0.3\linewidth}
+			\includegraphics[width=\linewidth]{Im/rust-logo.png}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Rust est un langage \textit{sécurisé}}
+	\begin{itemize}
+		\item Pas de \texttt{malloc} ni de \texttt{free}
+		\item Gestion obligatoire et explicite des erreurs 
+		\item Pattern matching exhaustif des énumerations
+		\item Ownership et borrowing
+		\item \texttt{Option<T>}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Rust n'est pas \texttt{null}}
+	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
+	
+	\begin{lstlisting}[language=java]
+User user = null;  // Valid Java
+user.greet();      // NullPointerException
+	\end{lstlisting}
+	
+	En Rust, on utilise le type générique \texttt{Option<T>} pour représenter un type qui peut être \texttt{null}.
+	
+	\begin{lstlisting}
+let user1 = None;
+user1.greet(); // Ne compile pas
+let user2 = Some(User{name:"Yannick"});
+if let Some(u) = user2 {
+  u.greet();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Conséquences dans d'autres langages}
+	Certains langages utilisent une syntaxe similaire à Rust. Java a introduit le type \texttt{Optional<T>} qui nécessite aussi d'être vérifié.
+	
+	Exemple en Python et utilité du type hinting.
+\end{frame}
+
+\begin{frame}[fragile]{Des objets complets}
+	\begin{lstlisting}
+class User:
+	age: int
+	name: str
+	
+	def __init__(self, name):
+		self.name = name
+
+u = User("Yannick")
+print(u.age)
+	\end{lstlisting}
+	\only{
+		\begin{blueblock}{Est-ce possible en Rust ?}\end{blueblock}
+	}<2>
+	\only{\begin{blueblock}{Est-ce possible en Rust ?}
+			Non, grace à son typage fort, Rust garantit que chaque attribut d'une structure correspond bel et bien au type indiqué.
+		\end{blueblock}}<3>			
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Ownership et mutabilité (1)}
+	En regardant ce code Java, que peut-on dire de la variable \texttt{address} donnée en paramètre ?
+\begin{lstlisting}[language=Java]
+void setAddress(Address address) {
+  this.address = address;
+}	
+\end{lstlisting}
+	\only{
+	\begin{itemize}
+		\item La méthode ne précise pas si la variable \texttt{address} est exclusivement utilisée par \texttt{this} ou si d'autres objets y ont accès.
+		\item Si d'autres objets y ont accès, a-t-on le droit de modifier cette variable ?
+	\end{itemize}}<2>
+\end{frame}
+
+\begin{frame}[fragile]{Valeur ou référence ?}
+	En Python, Java ou JavaScript, (presque) tout se passe par référence.
+	
+	\begin{lstlisting}[language=Python]
+# Python
+def change_name(name: str):
+  self.name = name
+	\end{lstlisting}
+	\begin{lstlisting}[language=Java]
+// Java
+void setAddress(Address addr) {
+  this.address = addr;
+}	
+\end{lstlisting}
+	Et rien ne montre de l'extérieur que ces fonctions modifient le contenu de l'utilisateur.	
+\end{frame}
+
+
+\begin{frame}[fragile]{Ownership et mutabilité (2)}
+	En Rust, c'est explicite et vérifié à la compilation.
+	
+	\begin{lstlisting}
+change_address1(&mut self, address: &Address) {
+  self.address = address.clone();
+}
+
+change_address2(&mut self, address: Address) {
+  self.address = address;
+}
+
+change_address3(&mut self, address: &mut Address) {
+  address.postcode = 1050;
+  self.address = address.clone();
+}
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Parallélisme}
+	La modification concurrente d'une variable partagée est un problème récurrent dans le cadre du multi-threading (et du parallélisme plus généralement) ?
+	
+	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}		
+	\end{blueblock}}<2>
+	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}
+		Si on donne l'ownership de plusieurs variables à plusieurs threads, alors chacun sait que lui seul possède la variable, et il ne peut pas y avoir de \textit{race condition}.
+	\end{blueblock}}<3>
+\end{frame}
+
+\begin{frame}{Parallélisme (2)}
+	Et si on veut quand-même modifier une variable partagée ?
+	
+	Alors on utilise le pattern d'\textit{interior mutability} avec une \texttt{Mutex<T>}.
+	
+	\begin{blueblock}{\textit{Interior mutability}}
+		C'est un principe qui va permettre de modifier une variable interne sans montrer au compilateur qu'une modification a lieu. \texttt{Mutex<T>} utilise ce pattern.
+	\end{blueblock}
+\end{frame}
+
+\begin{frame}[fragile]{Itérateurs parallèles}
+	Rust propose beaucoup de fonctions sur les itérateurs.
+	
+	\begin{blueblock}{Itérateurs parallèles}
+		Comme on sait ce qui appartient à qui, on sait aussi ce qu'on peut paralléliser !	
+	\end{blueblock}
+	
+	\only{\begin{center}
+			\includegraphics[width=\linewidth]{Im/polars_banner.png}
+	\end{center}}<2>
+\end{frame}
+
+
+\begin{frame}{Ce dont on n'a pas encore parlé...}
+	\begin{itemize}
+		\item La puissance des \texttt{enum} et le pattern matching
+		\item L'absence d'héritage
+		\item La gestion des erreurs
+		\item interopérabilité avec d'autres langages
+		\item \texttt{cargo}
+		\item Les autres projets (deno2, ruff, uv, \dots) qui exploitent les capacités de Rust
+		\item La courbe d'apprentissage (oups !)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusions}
+	Rust vous contraint à respecter de nombreuses règles qui sont condiérées comme des \textit{bonnes pratiques} ou des \textit{edge cases} dans d'autres langages
+	\begin{itemize}
+		\item typage en Python
+		\item clone ou pas clone ?
+		\item muable ou immuable ?
+		\item \texttt{free} ou pas \texttt{free} ? 
+	\end{itemize}
+\end{frame}
+
+\end{document}
