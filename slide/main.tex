@@ -51,6 +51,10 @@
 \usepackage{listings}
 \usepackage{inconsolata}
 
+%add support for unicode \ding{55} and \ding{51}
+\usepackage{pifont}
+\newcommand{\greenv}{\textcolor{ForestGreen}{\ding{51}}}
+\newcommand{\redx}{\textcolor{red}{\ding{55}}}
 \newcommand{\backupbegin}{
 	\newcounter{finalframe}
 	\setcounter{finalframe}{\value{framenumber}}
@@ -73,168 +77,244 @@
 	\titlepage
 \end{frame}
 
-\begin{frame}{Parlons de Rust}
+\begin{frame}{Agenda}
 	\begin{columns}
 		\begin{column}{0.65\linewidth}
 			\begin{itemize}
-				\item Débuté à Mozzilla entre 2006 et 2009
-				\item Compilé
-				\item Typage fort et statique
-				\item Axé sur 
+				\item<1-> c'est quoi un Version Control System (VCS) ?
+				\item<2-> Introduction à Git ?
 				\begin{itemize}
-					\item la sécurité
-					\item la rapidité	
+					\item comment ça marche ?
+					\item quel sont les avantages ?
+					\item comment l'installer ?
+					\item comment l'utiliser ?
+					\item exerceices pratiques
 				\end{itemize}
+				\item<3-> Introduction à GitHub (ou autre plateforme) ?
+				\begin{itemize}
+					\item En quoi est-ce différent de Git ?
+					\item Comment l'utiliser ?
+					\item avantages et inconvénients
+					\item exerceices pratiques
+				\end{itemize}
+				\item<4-> Conclusion et synthèse
+				\item<5-> Et pour aller plus loin
 			\end{itemize}
 		\end{column} %%
 		\begin{column}{0.3\linewidth}
-			\includegraphics[width=\linewidth]{Im/rust-logo.png}
+			\includegraphics[width=\linewidth]{Im/Git-logo.png}
 		\end{column}
 	\end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Rust est un langage \textit{sécurisé}}
+\begin{frame}[fragile]{C'est quoi un VCS ?}
+	comment partagée des fichiers (code) entre plusieurs personnes ou plusieurs machines ?
+\end{frame}
+
+% when itemize in the next slide every item will be transparant after the previous one
+\begin{frame}[fragile]{C'est quoi un VCS ?}
+	% this slide is a bit of a joke, where I ask the audience how they store their files, and then I show them the "worst" way to do it
+	% it will be presented as consecutive images on top of each other this will be showed one by one
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+			\begin{itemize}
+				\item<1-> photo de l'écran
+				% create a "advantages" and "disadvantages" list
+				\item<2-> une clé USB
+				\item<3-> fichier sur discord
+				\item<4-> Cloud (google drive, dropbox, \dots)
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			\begin{overprint}
+				\onslide<1>\includegraphics[width=\linewidth]{Im/taking_picture_sreen.jpeg}
+				\onslide<2>\includegraphics[width=\linewidth]{Im/thumb_drive.jpg}
+				\onslide<3>\includegraphics[width=\linewidth]{Im/discord.png}
+				\onslide<4>\includegraphics[width=\linewidth]{Im/cumulus.jpg}
+			\end{overprint}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+% add on the previous slide a small note telling that not all methods are equal
+\begin{frame}[fragile]{C'est quoi un VCS ?}
 	\begin{itemize}
-		\item Pas de \texttt{malloc} ni de \texttt{free}
-		\item Gestion obligatoire et explicite des erreurs 
-		\item Pattern matching exhaustif des énumerations
-		\item Ownership et borrowing
-		\item \texttt{Option<T>}
+		\item photo de l'écran
+		\item une clé USB
+		\item fichier sur discord
+		\item Cloud (google drive, dropbox, \dots)
 	\end{itemize}
+	% add a note that not all methods are equal
+	\begin{alertblock}{Attention}
+		Toutes les méthodes ne se valent pas !
+	\end{alertblock}
 \end{frame}
 
+\begin{frame}[fragile]{C'est quoi un VCS ?}
+	%create a comand for the red ding{55} and green checkmark
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{|l|c|c|c|c|c|c|}
+			\hline
+			\textbf{Méthode} & \textbf{Historique} & \textbf{Sauvegarde} & \textbf{Collaboration} & \textbf{Travail en parallèle} & \textbf{Commentaires} & \textbf{Automatisation} \\ \hline
+			\hline
+			\textbf{Prendre une photo} & \redx & \redx & \redx & \redx & \redx & \redx \\ \hline
+			\textbf{Clé USB} & \redx & \greenv & \redx & \redx & \redx & \redx \\ \hline
+			\textbf{Serveur Discord} & \redx & \greenv & \greenv & \redx & \redx & \redx \\ \hline
 
-\begin{frame}[fragile]{Rust n'est pas \texttt{null}}
-	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
-	
-	\begin{lstlisting}[language=java]
-User user = null;  // Valid Java
-user.greet();      // NullPointerException
-	\end{lstlisting}
-	
-	En Rust, on utilise le type générique \texttt{Option<T>} pour représenter un type qui peut être \texttt{null}.
-	
-	\begin{lstlisting}
-let user1 = None;
-user1.greet(); // Ne compile pas
-let user2 = Some(User{name:"Yannick"});
-if let Some(u) = user2 {
-  u.greet();
-}
-\end{lstlisting}
+			\textbf{Cloud} & \greenv & \greenv & \greenv & \redx & \greenv & \redx \\ \hline
+		\end{tabular}
+	}
 \end{frame}
 
-\begin{frame}[fragile]{Conséquences dans d'autres langages}
-	Certains langages utilisent une syntaxe similaire à Rust. Java a introduit le type \texttt{Optional<T>} qui nécessite aussi d'être vérifié.
-	
-	Exemple en Python et utilité du type hinting.
+% now we will show the advantages and disadvantages of each of the methods using tables each line will be a method and the columns will a thing to do and the cell will be a cross or a checkmark
+\begin{frame}[fragile]{C'est quoi un VCS ?}
+	%create a comand for the red ding{55} and green checkmark
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{|l|c|c|c|c|c|c|}
+			\hline
+			\textbf{Méthode} & \textbf{Historique} & \textbf{Sauvegarde} & \textbf{Collaboration} & \textbf{Travail en parallèle} & \textbf{Commentaires} & \textbf{Automatisation} \\ \hline
+			\hline
+			\textbf{Prendre une photo} & \redx & \redx & \redx & \redx & \redx & \redx \\ \hline
+			\textbf{Clé USB} & \redx & \greenv & \redx & \redx & \redx & \redx \\ \hline
+			\textbf{Serveur Discord} & \redx & \greenv & \greenv & \redx & \redx & \redx \\ \hline
+			\textbf{Cloud} & \greenv & \greenv & \greenv & \redx & \greenv & \redx \\ \hline
+			\textbf{Git (VCS)} & \greenv & \greenv & \greenv & \greenv & \greenv & \greenv \\ \hline
+		\end{tabular}
+	}
 \end{frame}
+		
 
-\begin{frame}[fragile]{Des objets complets}
-	\begin{lstlisting}
-class User:
-	age: int
-	name: str
+% \begin{frame}[fragile]{Rust n'est pas \texttt{null}}
+% 	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
 	
-	def __init__(self, name):
-		self.name = name
-
-u = User("Yannick")
-print(u.age)
-	\end{lstlisting}
-	\only{
-		\begin{blueblock}{Est-ce possible en Rust ?}\end{blueblock}
-	}<2>
-	\only{\begin{blueblock}{Est-ce possible en Rust ?}
-			Non, grace à son typage fort, Rust garantit que chaque attribut d'une structure correspond bel et bien au type indiqué.
-		\end{blueblock}}<3>			
+% 	\begin{lstlisting}[language=java]
+% User user = null;  // Valid Java
+% user.greet();      // NullPointerException
+% 	\end{lstlisting}
 	
-\end{frame}
-
-
-
-\begin{frame}[fragile]{Ownership et mutabilité (1)}
-	En regardant ce code Java, que peut-on dire de la variable \texttt{address} donnée en paramètre ?
-\begin{lstlisting}[language=Java]
-void setAddress(Address address) {
-  this.address = address;
-}	
-\end{lstlisting}
-	\only{
-	\begin{itemize}
-		\item La méthode ne précise pas si la variable \texttt{address} est exclusivement utilisée par \texttt{this} ou si d'autres objets y ont accès.
-		\item Si d'autres objets y ont accès, a-t-on le droit de modifier cette variable ?
-	\end{itemize}}<2>
-\end{frame}
-
-\begin{frame}[fragile]{Valeur ou référence ?}
-	En Python, Java ou JavaScript, (presque) tout se passe par référence.
+% 	En Rust, on utilise le type générique \texttt{Option<T>} pour représenter un type qui peut être \texttt{null}.
 	
-	\begin{lstlisting}[language=Python]
-# Python
-def change_name(name: str):
-  self.name = name
-	\end{lstlisting}
-	\begin{lstlisting}[language=Java]
-// Java
-void setAddress(Address addr) {
-  this.address = addr;
-}	
-\end{lstlisting}
-	Et rien ne montre de l'extérieur que ces fonctions modifient le contenu de l'utilisateur.	
-\end{frame}
+% 	\begin{lstlisting}
+% let user1 = None;
+% user1.greet(); // Ne compile pas
+% let user2 = Some(User{name:"Yannick"});
+% if let Some(u) = user2 {
+%   u.greet();
+% }
+% \end{lstlisting}
+% \end{frame}
 
-
-\begin{frame}[fragile]{Ownership et mutabilité (2)}
-	En Rust, c'est explicite et vérifié à la compilation.
+% \begin{frame}[fragile]{Conséquences dans d'autres langages}
+% 	Certains langages utilisent une syntaxe similaire à Rust. Java a introduit le type \texttt{Optional<T>} qui nécessite aussi d'être vérifié.
 	
-	\begin{lstlisting}
-change_address1(&mut self, address: &Address) {
-  self.address = address.clone();
-}
+% 	Exemple en Python et utilité du type hinting.
+% \end{frame}
 
-change_address2(&mut self, address: Address) {
-  self.address = address;
-}
+% \begin{frame}[fragile]{Des objets complets}
+% 	\begin{lstlisting}
+% class User:
+% 	age: int
+% 	name: str
+	
+% 	def __init__(self, name):
+% 		self.name = name
 
-change_address3(&mut self, address: &mut Address) {
-  address.postcode = 1050;
-  self.address = address.clone();
-}
-	\end{lstlisting}
-\end{frame}
+% u = User("Yannick")
+% print(u.age)
+% 	\end{lstlisting}
+% 	\only{
+% 		\begin{blueblock}{Est-ce possible en Rust ?}\end{blueblock}
+% 	}<2>
+% 	\only{\begin{blueblock}{Est-ce possible en Rust ?}
+% 			Non, grace à son typage fort, Rust garantit que chaque attribut d'une structure correspond bel et bien au type indiqué.
+% 		\end{blueblock}}<3>			
+	
+% \end{frame}
 
-\begin{frame}{Parallélisme}
-	La modification concurrente d'une variable partagée est un problème récurrent dans le cadre du multi-threading (et du parallélisme plus généralement) ?
-	
-	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}		
-	\end{blueblock}}<2>
-	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}
-		Si on donne l'ownership de plusieurs variables à plusieurs threads, alors chacun sait que lui seul possède la variable, et il ne peut pas y avoir de \textit{race condition}.
-	\end{blueblock}}<3>
-\end{frame}
 
-\begin{frame}{Parallélisme (2)}
-	Et si on veut quand-même modifier une variable partagée ?
-	
-	Alors on utilise le pattern d'\textit{interior mutability} avec une \texttt{Mutex<T>}.
-	
-	\begin{blueblock}{\textit{Interior mutability}}
-		C'est un principe qui va permettre de modifier une variable interne sans montrer au compilateur qu'une modification a lieu. \texttt{Mutex<T>} utilise ce pattern.
-	\end{blueblock}
-\end{frame}
 
-\begin{frame}[fragile]{Itérateurs parallèles}
-	Rust propose beaucoup de fonctions sur les itérateurs.
+% \begin{frame}[fragile]{Ownership et mutabilité (1)}
+% 	En regardant ce code Java, que peut-on dire de la variable \texttt{address} donnée en paramètre ?
+% \begin{lstlisting}[language=Java]
+% void setAddress(Address address) {
+%   this.address = address;
+% }	
+% \end{lstlisting}
+% 	\only{
+% 	\begin{itemize}
+% 		\item La méthode ne précise pas si la variable \texttt{address} est exclusivement utilisée par \texttt{this} ou si d'autres objets y ont accès.
+% 		\item Si d'autres objets y ont accès, a-t-on le droit de modifier cette variable ?
+% 	\end{itemize}}<2>
+% \end{frame}
+
+% \begin{frame}[fragile]{Valeur ou référence ?}
+% 	En Python, Java ou JavaScript, (presque) tout se passe par référence.
 	
-	\begin{blueblock}{Itérateurs parallèles}
-		Comme on sait ce qui appartient à qui, on sait aussi ce qu'on peut paralléliser !	
-	\end{blueblock}
+% 	\begin{lstlisting}[language=Python]
+% # Python
+% def change_name(name: str):
+%   self.name = name
+% 	\end{lstlisting}
+% 	\begin{lstlisting}[language=Java]
+% // Java
+% void setAddress(Address addr) {
+%   this.address = addr;
+% }	
+% \end{lstlisting}
+% 	Et rien ne montre de l'extérieur que ces fonctions modifient le contenu de l'utilisateur.	
+% \end{frame}
+
+
+% \begin{frame}[fragile]{Ownership et mutabilité (2)}
+% 	En Rust, c'est explicite et vérifié à la compilation.
 	
-	\only{\begin{center}
-			\includegraphics[width=\linewidth]{Im/polars_banner.png}
-	\end{center}}<2>
-\end{frame}
+% 	\begin{lstlisting}
+% change_address1(&mut self, address: &Address) {
+%   self.address = address.clone();
+% }
+
+% change_address2(&mut self, address: Address) {
+%   self.address = address;
+% }
+
+% change_address3(&mut self, address: &mut Address) {
+%   address.postcode = 1050;
+%   self.address = address.clone();
+% }
+% 	\end{lstlisting}
+% \end{frame}
+
+% \begin{frame}{Parallélisme}
+% 	La modification concurrente d'une variable partagée est un problème récurrent dans le cadre du multi-threading (et du parallélisme plus généralement) ?
+	
+% 	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}		
+% 	\end{blueblock}}<2>
+% 	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}
+% 		Si on donne l'ownership de plusieurs variables à plusieurs threads, alors chacun sait que lui seul possède la variable, et il ne peut pas y avoir de \textit{race condition}.
+% 	\end{blueblock}}<3>
+% \end{frame}
+
+% \begin{frame}{Parallélisme (2)}
+% 	Et si on veut quand-même modifier une variable partagée ?
+	
+% 	Alors on utilise le pattern d'\textit{interior mutability} avec une \texttt{Mutex<T>}.
+	
+% 	\begin{blueblock}{\textit{Interior mutability}}
+% 		C'est un principe qui va permettre de modifier une variable interne sans montrer au compilateur qu'une modification a lieu. \texttt{Mutex<T>} utilise ce pattern.
+% 	\end{blueblock}
+% \end{frame}
+
+% \begin{frame}[fragile]{Itérateurs parallèles}
+% 	Rust propose beaucoup de fonctions sur les itérateurs.
+	
+% 	\begin{blueblock}{Itérateurs parallèles}
+% 		Comme on sait ce qui appartient à qui, on sait aussi ce qu'on peut paralléliser !	
+% 	\end{blueblock}
+	
+% 	\only{\begin{center}
+% 			\includegraphics[width=\linewidth]{}
+% 	\end{center}}<2>
+% \end{frame}
 
 
 \begin{frame}{Ce dont on n'a pas encore parlé...}
