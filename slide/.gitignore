@@ -9,3 +9,5 @@
 *.vrb
 *.fls
 *.fdb_latexmk
+
+!theme/logos/urlab.pdf
