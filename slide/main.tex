@@ -81,21 +81,21 @@
 	\begin{columns}
 		\begin{column}{0.65\linewidth}
 			\begin{itemize}
-				\item<1-> c'est quoi un Version Control System (VCS) ?
-				\item<2-> Introduction à Git ?
+				\item<1-> donné et partage de fichiers 
+				\item<2-> Introduction à Git
 				\begin{itemize}
 					\item comment ça marche ?
 					\item quel sont les avantages ?
 					\item comment l'installer ?
 					\item comment l'utiliser ?
-					\item exerceices pratiques
+					\item exercices pratiques
 				\end{itemize}
-				\item<3-> Introduction à GitHub (ou autre plateforme) ?
+				\item<3-> Introduction à GitHub (ou autre plateforme)
 				\begin{itemize}
 					\item En quoi est-ce différent de Git ?
 					\item Comment l'utiliser ?
 					\item avantages et inconvénients
-					\item exerceices pratiques
+					\item exercices pratiques
 				\end{itemize}
 				\item<4-> Conclusion et synthèse
 				\item<5-> Et pour aller plus loin
@@ -107,12 +107,12 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{C'est quoi un VCS ?}
+\begin{frame}[fragile]{donné et partage de fichiers}
 	comment partagée des fichiers (code) entre plusieurs personnes ou plusieurs machines ?
 \end{frame}
 
 % when itemize in the next slide every item will be transparant after the previous one
-\begin{frame}[fragile]{C'est quoi un VCS ?}
+\begin{frame}[fragile]{donné et partage de fichiers}
 	% this slide is a bit of a joke, where I ask the audience how they store their files, and then I show them the "worst" way to do it
 	% it will be presented as consecutive images on top of each other this will be showed one by one
 	\begin{columns}
@@ -137,7 +137,7 @@
 \end{frame}
 
 % add on the previous slide a small note telling that not all methods are equal
-\begin{frame}[fragile]{C'est quoi un VCS ?}
+\begin{frame}[fragile]{donné et partage de fichiers}
 	\begin{itemize}
 		\item photo de l'écran
 		\item une clé USB
@@ -150,7 +150,7 @@
 	\end{alertblock}
 \end{frame}
 
-\begin{frame}[fragile]{C'est quoi un VCS ?}
+\begin{frame}[fragile]{donné et partage de fichiers}
 	%create a comand for the red ding{55} and green checkmark
 	\resizebox{\linewidth}{!}{
 		\begin{tabular}{|l|c|c|c|c|c|c|}
@@ -167,7 +167,7 @@
 \end{frame}
 
 % now we will show the advantages and disadvantages of each of the methods using tables each line will be a method and the columns will a thing to do and the cell will be a cross or a checkmark
-\begin{frame}[fragile]{C'est quoi un VCS ?}
+\begin{frame}[fragile]{donné et partage de fichiers}
 	%create a comand for the red ding{55} and green checkmark
 	\resizebox{\linewidth}{!}{
 		\begin{tabular}{|l|c|c|c|c|c|c|}
@@ -183,12 +183,86 @@
 	}
 \end{frame}
 		
+\begin{frame}[fragile]{Introduction à Git}
+	\begin{itemize}
+		\item Comment ça marche ?
+		\item Quels sont les avantages ?
+		\item Comment l'installer ?
+		\item Comment l'utiliser ?
+		\item Exercices pratiques
+	\end{itemize}
+\end{frame}
 
-% \begin{frame}[fragile]{Rust n'est pas \texttt{null}}
-% 	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
+
+\begin{frame}[fragile]{Comment ça marche ?}
 	
-% 	\begin{lstlisting}[language=java]
-% User user = null;  // Valid Java
+	Git est un système de contrôle de version (VCS) distribué, un VCS est une base de données qui utilise un système de fichiers pour enregistrer les modifications apportées à un ensemble de fichiers utilisent la théorie des graphes... BREF !
+\end{frame}
+
+\begin{frame}[fragile]{Comment ça marche ?}
+	comme xkcd le dit si bien...
+	%add the xkcd comic about git on the entire slide
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{Im/git_xkcd.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Comment ça marche ?}
+	\framesubtitle{Comment ça marche ?}
+	
+	%spongebob meme about magic 
+	git est magic!
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{Im/its-a-kind-of-magic.jpg}
+	\end{center}
+
+	il peut faire tout ce que vous voulez, mais il faut savoir comment lui demander
+
+\end{frame}
+
+\begin{frame}{Quels sont les avantages ?}
+	% \begin{column}{0.5\linewidth}
+		en quoi git est-il mieux que les autres méthodes ?
+		% \begin{column}{0.5\linewidth}
+			\begin{itemize}
+				\item <1-> Historique des modifications
+				\item <2-> Sauvegarde
+				\item <3-> Commentaires
+				\item <4-> Automatisation
+			\end{itemize}
+		% \end{column}
+		% \begin{column}{0.5\linewidth}	
+			% \begin{overprint}
+			% 	% on the first slide we will show the 2 screenshots of the code and the code modification and onder a 3rd image with the change in the code
+			% 	\onslide<1>{
+			% 		\begin{subcaptiongroup}
+			% 			\begin{subfigure}{0.3\linewidth}
+			% 				\includegraphics[width=\linewidth]{Im/exemple/pre_modif.png}
+			% 				\caption{Code original}
+			% 			\end{subfigure}
+			% 			\begin{subfigure}{0.3\linewidth}
+			% 				\includegraphics[width=\linewidth]{Im/exemple/post_modif.png}
+			% 				\caption{Différence}
+			% 			\end{subfigure}
+			% 			\begin{subfigure}{0.3\linewidth}
+			% 				\includegraphics[width=\linewidth]{Im/exemple/modif_visualisation.png}
+			% 				\caption{Code modifié}
+			% 			\end{subfigure}
+			% 		\end{subcaptiongroup}
+			% 		}
+			% \end{overprint}
+		% \end{column}
+	% \end{column}
+\end{frame}
+	
+	
+	
+	
+	% \begin{frame}[fragile]{Rust n'est pas \texttt{null}}
+	% 	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
+	
+	% 	\begin{lstlisting}[language=java]
+	% User user = null;  // Valid Java
 % user.greet();      // NullPointerException
 % 	\end{lstlisting}
 	
