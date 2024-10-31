@@ -1,8 +1,11 @@
 
 def dit_bonjour():
-    print("Bonjour !") # Affiche "Bonjour !"
+    print("Bonjour le Mode !") 
     
     
     
 if __name__ == "__main__":
-    dit_bonjour()
+    #TODO: Appeler la fonction dit_bonjour
+    
+    #! Ce commentaire est a supprimer
+    pass
