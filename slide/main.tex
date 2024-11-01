@@ -1,4 +1,5 @@
 \documentclass[usenames,dvipsnames]{beamer}
+\mode<presentation>{}
 \usetheme{ULB}
 
 
@@ -194,7 +195,7 @@
 \end{frame}
 
 
-\begin{frame}[fragile]{Comment ça marche ?}
+\begin{frame}[fragile]{Comment ça marche ?}{test}
 	
 	Git est un système de contrôle de version (VCS) distribué, un VCS est une base de données qui utilise un système de fichiers pour enregistrer les modifications apportées à un ensemble de fichiers utilisent la théorie des graphes... BREF !
 \end{frame}
@@ -256,8 +257,82 @@
 \end{frame}
 	
 	
-	
-	
+
+
+\begin{frame}[fragile]{Comment utilser ?}
+	les commandes de base:
+	\begin{itemize}
+		\item git init
+		\item git add
+		\item git commit
+	\end{itemize}
+
+	les commandes un peu plus avancées (surtout utile en collaboration)
+	\begin{itemize}
+		\item git branch
+		\item git checkout et git switch
+		\item git merge
+	\end{itemize}
+
+	% bloc pour dire que on ne va que voir les commande sur la ligne de commande
+	\begin{alertblock}{Note}
+		Nous ne verrons que les commandes en ligne de commande, mais il existe des interfaces graphiques pour git (voir \ref{sec:aller-plus-loin})
+	\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{les commandes de base}
+	\begin{itemize}
+		\item<1-3> git init
+		\item <2-3> git add
+		\item <3-3> git commit
+	\end{itemize}
+
+	\begin{onlyenv}<1>
+		\begin{block}{git init}
+			\texttt{git init} permet de créer un nouveau dépôt git dans le répertoire courant sous la forme d'un dossier caché \texttt{.git}
+		\end{block}
+
+		\begin{block}{note}
+			\texttt{.git} n'as pas besoin d'être modifié directement, il est géré par git lui-même. mais si vous voulez automatiser des tâches, vous pouvez ajouter des scripts dans le dossier \texttt{.git/hooks}
+		\end{block}
+
+		commande à taper: \lstinline|git init|
+	\end{onlyenv}
+
+	\begin{onlyenv}<2>
+		\begin{block}{git add}
+			\texttt{git add} permet d'ajouter des fichiers à l'index de git, c'est-à-dire de dire à git que vous voulez suivre les modifications de ce fichier et % add color to the text
+			quand vous ferez un commit, 
+			\color{red}
+			Uniquement
+			\color{black}
+			les modifications de ces fichiers seront prises en compte.
+		\end{block}
+
+		commande à taper: \lstinline|git add <fichier>| \\
+		
+		\texttt{<fichier>}: peut être un fichier ou un dossier
+	\end{onlyenv}
+
+	\begin{onlyenv}<3>
+		\begin{block}{git commit}
+			\texttt{git commit} permet de sauvegarder les modifications de vos fichiers dans le dépôt git. il est important de mettre un message clair et concis pour expliquer les modifications apportées.
+		\end{block}
+
+		commande à taper: \lstinline|git commit -m "message"| \\
+		le -m est obligatoire et le message doit être entre guillemets
+	\end{onlyenv}
+\end{frame}
+\begin{frame}
+	Bravo vous avez fait votre premier commit !
+	\pause
+	\begin{center}
+		\includegraphics[width=0.5\linewidth]{Im/question-mark.png}
+	\end{center}
+\end{frame}
+
+
 	% \begin{frame}[fragile]{Rust n'est pas \texttt{null}}
 	% 	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
 	
