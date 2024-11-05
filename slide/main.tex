@@ -324,12 +324,71 @@
 		le -m est obligatoire et le message doit être entre guillemets
 	\end{onlyenv}
 \end{frame}
-\begin{frame}
+\begin{frame}[fragile]{les commandes de base}
 	Bravo vous avez fait votre premier commit !
 	\pause
 	\begin{center}
 		\includegraphics[width=0.5\linewidth]{Im/question-mark.png}
 	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{les commandes de base}
+	% insert 2 images side by side with the git log and the git tree
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+			\lstinline|git log| \\
+			\includegraphics[width=\linewidth]{Im/exemple/terminal_log.png}
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			git graph sur vscode\\
+			\includegraphics[width=\linewidth]{Im/exemple/vs_log_tree.png}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{live coding}
+	Live time !
+\end{frame}
+
+\begin{frame}[fragile]{les commandes un peu plus avancées}
+	voyage dans le temps !
+	\begin{itemize}
+		\item git branch
+		\item git checkout et git switch
+		\item git merge
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{les commandes un peu plus avancées}
+	\begin{itemize}
+		\item<1-3> git branch
+		\item <2-3> git checkout et git switch
+		\item <3-3> git merge
+	\end{itemize}
+
+	\begin{onlyenv}<1>
+		\begin{block}{git branch}
+			\texttt{git branch} permet de créer une nouvelle branche dans votre dépôt git. une branche est une copie de votre code à un moment donné, vous pouvez travailler sur cette branche sans affecter le code de la branche principale (master).
+		\end{block}
+
+		commande à taper: \lstinline|git branch <nom_branche>|
+	\end{onlyenv}
+
+	\begin{onlyenv}<2>
+		\begin{block}{git checkout et git switch}
+			\texttt{git checkout} et \texttt{git switch} permettent de changer de branche. \texttt{git checkout} est la commande historique, mais \texttt{git switch} est plus intuitive.
+		\end{block}
+
+		commande à taper: \lstinline|git checkout <nom_branche>| ou \lstinline|git switch <nom_branche>|
+	\end{onlyenv}
+
+	\begin{onlyenv}<3>
+		\begin{block}{git merge}
+			\texttt{git merge} permet de fusionner une branche avec une autre. il est important de faire attention à ce que vous fusionnez, car si vous avez des modifications sur les mêmes fichiers, git ne saura pas quoi faire.
+		\end{block}
+
+		commande à taper: \lstinline|git merge <nom_branche>|
+	\end{onlyenv}
 \end{frame}
 
 
