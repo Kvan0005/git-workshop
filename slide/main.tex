@@ -283,9 +283,10 @@
 
 \begin{frame}[fragile]{les commandes de base}
 	\begin{itemize}
-		\item<1-3> git init
-		\item <2-3> git add
-		\item <3-3> git commit
+		\item<1-4> git init
+		\item <2-4> git status
+		\item <3-4> git add
+		\item <4-4> git commit
 	\end{itemize}
 
 	\begin{onlyenv}<1>
@@ -301,6 +302,14 @@
 	\end{onlyenv}
 
 	\begin{onlyenv}<2>
+		\begin{block}{git status}
+			\texttt{git status} permet de voir l'état de votre dépôt git, c'est-à-dire les fichiers qui ont été modifiés, ajoutés, supprimés, \dots
+		\end{block}
+
+		commande à taper: \lstinline|git status|
+	\end{onlyenv}
+
+	\begin{onlyenv}<3>
 		\begin{block}{git add}
 			\texttt{git add} permet d'ajouter des fichiers à l'index de git, c'est-à-dire de dire à git que vous voulez suivre les modifications de ce fichier et % add color to the text
 			quand vous ferez un commit, 
@@ -315,7 +324,7 @@
 		\texttt{<fichier>}: peut être un fichier ou un dossier
 	\end{onlyenv}
 
-	\begin{onlyenv}<3>
+	\begin{onlyenv}<4>
 		\begin{block}{git commit}
 			\texttt{git commit} permet de sauvegarder les modifications de vos fichiers dans le dépôt git. il est important de mettre un message clair et concis pour expliquer les modifications apportées.
 		\end{block}
@@ -391,160 +400,105 @@
 	\end{onlyenv}
 \end{frame}
 
+\begin{frame}[fragile]{commandes un peu plus avancées}
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Im/merge_outcome.jpg}
+	\end{center}
+\end{frame}
 
-	% \begin{frame}[fragile]{Rust n'est pas \texttt{null}}
-	% 	La \texttt{NullPointerException} est probablement l'exception la plus connue en Java.
+\begin{frame}[fragile]{commandes un peu plus avancées}
+	comment résoudre un conflit ?
+	\begin{blueblock}{résoudre un conflit}
+		\begin{itemize}
+			\item ouvrir le fichier en conflit
+			\item chercher les balises de conflit
+			\item résoudre le conflit
+			\item ajouter les fichiers modifiés
+			\item faire un commit
+		\end{itemize}
+	\end{blueblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{exercices pratiques}
+	\begin{itemize}
+		\item exercice 1: créer un dépôt git
+		\item exercice 2: faire un commit
+		\item exercice 3: créer une branche
+		\item exercice 4: fusionner une branche
+		\item exercice 5: résoudre un conflit 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Introduction à GitHub}
+	\begin{itemize}
+		\item En quoi est-ce différent de Git ?
+		\item Comment l'utiliser ?
+		\item avantages et inconvénients
+		\item exercices pratiques
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
+	simple analogie:
+	\begin{center}
+		\includegraphics[width=0.70\linewidth]{Im/git_porn.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
 	
-	% 	\begin{lstlisting}[language=java]
-	% User user = null;  // Valid Java
-% user.greet();      // NullPointerException
-% 	\end{lstlisting}
-	
-% 	En Rust, on utilise le type générique \texttt{Option<T>} pour représenter un type qui peut être \texttt{null}.
-	
-% 	\begin{lstlisting}
-% let user1 = None;
-% user1.greet(); // Ne compile pas
-% let user2 = Some(User{name:"Yannick"});
-% if let Some(u) = user2 {
-%   u.greet();
-% }
-% \end{lstlisting}
-% \end{frame}
+	\begin{center}
+        \includegraphics[width=0.3\textwidth]{Im/Git-logo.png} 
+        \textbf{\LARGE VS}
+        \hspace{1cm}
+        \includegraphics[width=0.3\textwidth]{Im/github-logo.png}
+    \end{center}
+	\begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Git} & \textbf{GitHub} \\
+			\hline
+			\hline
+			programme & service \\
+			\hline
+			\begin{tabular}[c]{@{}c@{}}gestion de version \\ décentralisé\end{tabular} & \begin{tabular}[c]{@{}c@{}}plateforme de \\ collaboration\end{tabular} \\
+			\hline
+			local & en ligne \\
+			\hline
+			open source & propriétaire (Microsoft) \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
 
-% \begin{frame}[fragile]{Conséquences dans d'autres langages}
-% 	Certains langages utilisent une syntaxe similaire à Rust. Java a introduit le type \texttt{Optional<T>} qui nécessite aussi d'être vérifié.
-	
-% 	Exemple en Python et utilité du type hinting.
-% \end{frame}
+\begin{frame}[fragile]{alternatives à GitHub}
+	% add a list of multiple image of the logo of different git hosting service
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{Im/gitea-logo.png}
+		\includegraphics[width=0.45\linewidth]{Im/gitlab-logo.png}
+	\end{center}
+	\begin{center}		
+		\includegraphics[width=0.3\linewidth]{Im/bitbucket-logo.png}
+	\end{center}
 
-% \begin{frame}[fragile]{Des objets complets}
-% 	\begin{lstlisting}
-% class User:
-% 	age: int
-% 	name: str
-	
-% 	def __init__(self, name):
-% 		self.name = name
+	et bien d'autres...
 
-% u = User("Yannick")
-% print(u.age)
-% 	\end{lstlisting}
-% 	\only{
-% 		\begin{blueblock}{Est-ce possible en Rust ?}\end{blueblock}
-% 	}<2>
-% 	\only{\begin{blueblock}{Est-ce possible en Rust ?}
-% 			Non, grace à son typage fort, Rust garantit que chaque attribut d'une structure correspond bel et bien au type indiqué.
-% 		\end{blueblock}}<3>			
-	
-% \end{frame}
+\end{frame}
 
+\begin{frame}[fragile]{comment l'utiliser ?}
+	\begin{itemize}
+		\item créer un compte
+		\item créer premier dépôt (aka repo)
+	\end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]{créer un compte}
+	avez vous vraiment besoin d'une explication ?
 
-% \begin{frame}[fragile]{Ownership et mutabilité (1)}
-% 	En regardant ce code Java, que peut-on dire de la variable \texttt{address} donnée en paramètre ?
-% \begin{lstlisting}[language=Java]
-% void setAddress(Address address) {
-%   this.address = address;
-% }	
-% \end{lstlisting}
-% 	\only{
-% 	\begin{itemize}
-% 		\item La méthode ne précise pas si la variable \texttt{address} est exclusivement utilisée par \texttt{this} ou si d'autres objets y ont accès.
-% 		\item Si d'autres objets y ont accès, a-t-on le droit de modifier cette variable ?
-% 	\end{itemize}}<2>
-% \end{frame}
-
-% \begin{frame}[fragile]{Valeur ou référence ?}
-% 	En Python, Java ou JavaScript, (presque) tout se passe par référence.
-	
-% 	\begin{lstlisting}[language=Python]
-% # Python
-% def change_name(name: str):
-%   self.name = name
-% 	\end{lstlisting}
-% 	\begin{lstlisting}[language=Java]
-% // Java
-% void setAddress(Address addr) {
-%   this.address = addr;
-% }	
-% \end{lstlisting}
-% 	Et rien ne montre de l'extérieur que ces fonctions modifient le contenu de l'utilisateur.	
-% \end{frame}
-
-
-% \begin{frame}[fragile]{Ownership et mutabilité (2)}
-% 	En Rust, c'est explicite et vérifié à la compilation.
-	
-% 	\begin{lstlisting}
-% change_address1(&mut self, address: &Address) {
-%   self.address = address.clone();
-% }
-
-% change_address2(&mut self, address: Address) {
-%   self.address = address;
-% }
-
-% change_address3(&mut self, address: &mut Address) {
-%   address.postcode = 1050;
-%   self.address = address.clone();
-% }
-% 	\end{lstlisting}
-% \end{frame}
-
-% \begin{frame}{Parallélisme}
-% 	La modification concurrente d'une variable partagée est un problème récurrent dans le cadre du multi-threading (et du parallélisme plus généralement) ?
-	
-% 	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}		
-% 	\end{blueblock}}<2>
-% 	\only{\begin{blueblock}{En quoi ce problème est-il lié à l'ownership ?}
-% 		Si on donne l'ownership de plusieurs variables à plusieurs threads, alors chacun sait que lui seul possède la variable, et il ne peut pas y avoir de \textit{race condition}.
-% 	\end{blueblock}}<3>
-% \end{frame}
-
-% \begin{frame}{Parallélisme (2)}
-% 	Et si on veut quand-même modifier une variable partagée ?
-	
-% 	Alors on utilise le pattern d'\textit{interior mutability} avec une \texttt{Mutex<T>}.
-	
-% 	\begin{blueblock}{\textit{Interior mutability}}
-% 		C'est un principe qui va permettre de modifier une variable interne sans montrer au compilateur qu'une modification a lieu. \texttt{Mutex<T>} utilise ce pattern.
-% 	\end{blueblock}
-% \end{frame}
-
-% \begin{frame}[fragile]{Itérateurs parallèles}
-% 	Rust propose beaucoup de fonctions sur les itérateurs.
-	
-% 	\begin{blueblock}{Itérateurs parallèles}
-% 		Comme on sait ce qui appartient à qui, on sait aussi ce qu'on peut paralléliser !	
-% 	\end{blueblock}
-	
-% 	\only{\begin{center}
-% 			\includegraphics[width=\linewidth]{}
-% 	\end{center}}<2>
-% \end{frame}
-
-
-% \begin{frame}{Ce dont on n'a pas encore parlé...}
-% 	\begin{itemize}
-% 		\item La puissance des \texttt{enum} et le pattern matching
-% 		\item L'absence d'héritage
-% 		\item La gestion des erreurs
-% 		\item interopérabilité avec d'autres langages
-% 		\item \texttt{cargo}
-% 		\item Les autres projets (deno2, ruff, uv, \dots) qui exploitent les capacités de Rust
-% 		\item La courbe d'apprentissage (oups !)
-% 	\end{itemize}
-% \end{frame}
-
-% \begin{frame}{Conclusions}
-% 	Rust vous contraint à respecter de nombreuses règles qui sont condiérées comme des \textit{bonnes pratiques} ou des \textit{edge cases} dans d'autres langages
-% 	\begin{itemize}
-% 		\item typage en Python
-% 		\item clone ou pas clone ?
-% 		\item muable ou immuable ?
-% 		\item \texttt{free} ou pas \texttt{free} ? 
-% 	\end{itemize}
-% \end{frame}
-
+	% \begin{blueblock}{conseil}
+	% 	apres avoir créé votre compte, vous pouvez utilser le GitHub sudent pack pour avoir des avantages supplémentaires 
+	% \end{blueblock}
+\end{frame}
 \end{document}

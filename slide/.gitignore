@@ -11,3 +11,4 @@
 *.fdb_latexmk
 
 !theme/logos/urlab.pdf
+!main.pdf
