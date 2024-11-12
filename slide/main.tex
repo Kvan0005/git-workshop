@@ -327,7 +327,7 @@
 	\begin{onlyenv}<4>
 		\begin{block}{git commit}
 			\texttt{git commit} permet de sauvegarder les modifications de vos fichiers dans le dépôt git. il est important de mettre un message clair et concis pour expliquer les modifications apportées.
-		\end{block}
+		\end{block} 
 
 		commande à taper: \lstinline|git commit -m "message"| \\
 		le -m est obligatoire et le message doit être entre guillemets
@@ -339,6 +339,7 @@
 	\begin{center}
 		\includegraphics[width=0.5\linewidth]{Im/question-mark.png}
 	\end{center}
+	bon maintenant comment voir ce que vous avez fait ?
 \end{frame}
 
 \begin{frame}[fragile]{les commandes de base}
@@ -355,12 +356,141 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{live coding}
-	Live time !
+\begin{frame}[fragile]{Introduction a GitHub}
+	Avant de continuer, avez-vous des questions ?
+	\pause
+	\vspace{2cm}
+	Avant les commande un peu plus avancées, nous allons voir comment utiliser GitHub
 \end{frame}
 
+
+
+\begin{frame}[fragile]{Introduction à GitHub}
+	\begin{itemize}
+		\item En quoi est-ce différent de Git ?
+		\item Comment l'utiliser ?
+		\item avantages et inconvénients
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
+	simple analogie:
+	\begin{center}
+		\includegraphics[width=0.70\linewidth]{Im/git_porn.png}
+	\end{center}
+\end{frame}
+\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
+	Si git est un livre, alors GitHub est une bibliothèque où vous pouvez stocker vos livres et les partager avec d'autres personnes.
+	\vspace{2cm}
+	Git sont vous données, Git est un cloud pour les stocker et les partager
+\end{frame}
+
+\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
+	
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{Im/Git-logo.png} 
+		\hspace{1cm}
+		\textbf{\LARGE VS}
+		\hspace{1cm}
+		\includegraphics[width=0.3\textwidth]{Im/github-logo.png}
+	\end{center}
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			\textbf{Git} & \textbf{GitHub} \\
+			\hline
+			\hline
+			programme & service \\
+			\hline
+			\begin{tabular}[c]{@{}c@{}}gestion de version \\ décentralisé\end{tabular} & \begin{tabular}[c]{@{}c@{}}plateforme de \\ collaboration\end{tabular} \\
+			\hline
+			local & en ligne \\
+			\hline
+			open source & propriétaire (Microsoft) \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+\begin{frame}[fragile]{alternatives à GitHub}
+	% add a list of multiple image of the logo of different git hosting service
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{Im/gitea-logo.png}
+		\includegraphics[width=0.45\linewidth]{Im/gitlab-logo.png}
+	\end{center}
+	\begin{center}		
+		\includegraphics[width=0.3\linewidth]{Im/bitbucket-logo.png}
+	\end{center}
+
+	et bien d'autres...
+
+\end{frame}
+
+\begin{frame}[fragile]{comment l'utiliser ?}
+	\begin{itemize}
+		\item créer un compte
+		\item clee d'accès ?
+		\item premier dépôt (aka repo)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{créer un compte}
+	avez vous vraiment besoin d'une explication ?
+
+	\begin{blueblock}{conseil}
+		apres avoir créé votre compte, vous pouvez utilser le GitHub sudent pack pour avoir des avantages supplémentaires 
+	\end{blueblock}
+\end{frame}
+
+\begin{frame}[fragile]{clée d'accès}
+	\begin{itemize}
+		\item<1-> pourquoi ?
+		\item<2-> comment ?
+	\end{itemize}
+	\begin{onlyenv}<1>
+		\begin{block}{pourquoi ?}
+			utiliser par github pour vous identifier, elle vous permet de vous authentifier quand vous fait des actions sur votre compte (clone, push, pull, \dots)
+		\end{block}
+	\end{onlyenv}
+	\begin{onlyenv}<2>
+		\begin{block}{comment ?}
+			suivant les étapes suivantes:
+			\begin{itemize}
+				\item aller dans les paramètres de votre compte se trouvant en haut à droite
+				\item settings de developer (ou alors SSH and GPG key mais c'est hores sujet)
+				\item clée d'accès personnel (personal access token) 
+				\item Tokens (classique)
+				\item générer un nouveau token et donner toutes les permissions (par simplicité)
+				\item \textbf{copier le token et le garder en lieu sûr}
+			\end{itemize}
+		\end{block}
+	\end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]{premier dépôt}
+	crée un nouveau dépôt:
+	\begin{itemize}
+		\item aller sur la page d'accueil de votre compte
+		\item cliquer sur le bouton "new"
+		\item donner un nom à votre dépôt
+		\item ajouter une description
+		\item choisir si vous voulez un dépôt public ou privé
+		\item cliquer sur "create repository"
+	\end{itemize}
+	simple non ?
+\end{frame}
+
+\begin{frame}[fragile]{comment l'utiliser ?}
+	comment iteragir avec un dépôt GitHub ?
+	\begin{itemize}
+		\item git clone
+		\item git push
+		\item git pull
+	\end{itemize}
+\end{frame}
+
+
 \begin{frame}[fragile]{les commandes un peu plus avancées}
-	voyage dans le temps !
 	\begin{itemize}
 		\item git branch
 		\item git checkout et git switch
@@ -430,75 +560,4 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Introduction à GitHub}
-	\begin{itemize}
-		\item En quoi est-ce différent de Git ?
-		\item Comment l'utiliser ?
-		\item avantages et inconvénients
-		\item exercices pratiques
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
-	simple analogie:
-	\begin{center}
-		\includegraphics[width=0.70\linewidth]{Im/git_porn.png}
-	\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{En quoi est-ce différent de Git ?}
-	
-	\begin{center}
-        \includegraphics[width=0.3\textwidth]{Im/Git-logo.png} 
-        \textbf{\LARGE VS}
-        \hspace{1cm}
-        \includegraphics[width=0.3\textwidth]{Im/github-logo.png}
-    \end{center}
-	\begin{table}[h!]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            \textbf{Git} & \textbf{GitHub} \\
-			\hline
-			\hline
-			programme & service \\
-			\hline
-			\begin{tabular}[c]{@{}c@{}}gestion de version \\ décentralisé\end{tabular} & \begin{tabular}[c]{@{}c@{}}plateforme de \\ collaboration\end{tabular} \\
-			\hline
-			local & en ligne \\
-			\hline
-			open source & propriétaire (Microsoft) \\
-			\hline
-		\end{tabular}
-	\end{table}
-\end{frame}
-
-\begin{frame}[fragile]{alternatives à GitHub}
-	% add a list of multiple image of the logo of different git hosting service
-	\begin{center}
-		\includegraphics[width=0.45\linewidth]{Im/gitea-logo.png}
-		\includegraphics[width=0.45\linewidth]{Im/gitlab-logo.png}
-	\end{center}
-	\begin{center}		
-		\includegraphics[width=0.3\linewidth]{Im/bitbucket-logo.png}
-	\end{center}
-
-	et bien d'autres...
-
-\end{frame}
-
-\begin{frame}[fragile]{comment l'utiliser ?}
-	\begin{itemize}
-		\item créer un compte
-		\item créer premier dépôt (aka repo)
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{créer un compte}
-	avez vous vraiment besoin d'une explication ?
-
-	% \begin{blueblock}{conseil}
-	% 	apres avoir créé votre compte, vous pouvez utilser le GitHub sudent pack pour avoir des avantages supplémentaires 
-	% \end{blueblock}
-\end{frame}
 \end{document}
