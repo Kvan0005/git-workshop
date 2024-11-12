@@ -489,7 +489,62 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{comment l'utiliser ?}
+	\begin{itemize}
+		\item<1-3> git clone
+		\item <2-3> git push
+		\item <3-3> git pull
+	\end{itemize}
 
+	\begin{onlyenv}<1>
+		\begin{block}{git clone}
+			\texttt{git clone} permet de copier un dépôt git sur votre machine. cela vous permet de travailler sur le code sans affecter le code original.
+		\end{block}
+
+		commande à taper: \lstinline|git clone <url_repo>|
+	\end{onlyenv}
+
+	\begin{onlyenv}<2>
+		\begin{block}{git push}
+			\texttt{git push} permet d'envoyer vos modifications sur le dépôt distant. cela permet de partager vos modifications avec les autres collaborateurs.
+		\end{block}
+
+		commande à taper: \lstinline|git push [origin <branche>]|
+	\end{onlyenv}
+
+	\begin{onlyenv}<3>
+		\begin{block}{git pull}
+			\texttt{git pull} permet de récupérer les modifications du dépôt distant sur votre machine. cela permet de travailler sur la dernière version du code.
+		\end{block}
+
+		commande à taper: \lstinline|git pull [origin <branche>]|
+	\end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]{petit recap}
+	pour résumer:
+	si vous voulez commencer un nouveau projet sur GitHub:
+	a faire 1 fois:
+	\begin{itemize}
+		\item cree un nouveau dépôt sur GitHub
+		\item clone sur votre machine avec \lstinline|git clone <url_repo>|
+	\end{itemize}
+	a faire à chaque fois que vous voulez partager vos modifications:
+	\begin{itemize}
+		\item mettre à jour votre dépôt local avec \lstinline|git pull|
+		\item coder vos modifications
+		\item ajouter vos modifications avec \lstinline|git add <fichier>|
+		\item faire un commit avec \lstinline|git commit -m "message"|
+		\item envoyer vos modifications sur GitHub avec \lstinline|git push|
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{petit recap}
+	vous savez maintenant comment utiliser git et GitHub pour gérer vos projets solo sur vos machines !
+	\begin{center}
+		\includegraphics[width=0.5\linewidth]{Im/fire_git.png}
+	\end{center}
+\end{frame}
 \begin{frame}[fragile]{les commandes un peu plus avancées}
 	\begin{itemize}
 		\item git branch
@@ -498,7 +553,8 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{les commandes un peu plus avancées}
+\begin{frame}[fragile]{les commandes un peu plus avancées pour git}
+	les commandes un peu plus avancées qui sont surtout utiles en collaboration: 
 	\begin{itemize}
 		\item<1-3> git branch
 		\item <2-3> git checkout et git switch
@@ -547,17 +603,6 @@
 			\item faire un commit
 		\end{itemize}
 	\end{blueblock}
-\end{frame}
-
-
-\begin{frame}[fragile]{exercices pratiques}
-	\begin{itemize}
-		\item exercice 1: créer un dépôt git
-		\item exercice 2: faire un commit
-		\item exercice 3: créer une branche
-		\item exercice 4: fusionner une branche
-		\item exercice 5: résoudre un conflit 
-	\end{itemize}
 \end{frame}
 
 \end{document}
